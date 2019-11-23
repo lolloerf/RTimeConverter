@@ -4,11 +4,14 @@ import time, base64, os
 # ruwix: fourth row is +2, fifth is dnf
 
 def main():
+    #make a banner
     print('-' * 80)
     print('*' * 18 + 'Convert Ruwix.com to Twisty Timer Save Files'+ '*' * 18)
     print('*' * 18 + 'Convert Twisty Timer to Ruwix.com Save Files'+ '*' * 18)
     print('-' * 80)
-
+    
+    #get file and start converting
+    #file has to be in same dir as script
     while True:
         input_path = str(os.path.dirname(os.path.realpath(__file__))) + '\\' + input('Enter input file name>>> ')
 
@@ -18,6 +21,7 @@ def main():
             lines = input_file.readlines()
             if lines[0][0] == '"':
                 print('Format recognized. \nConverting...')
+                #ruwix() isnt a thing yet
                 o_lines = twisty(lines)
                 print('Converted.')
             else:
@@ -38,7 +42,7 @@ def main():
 
 def ruwix(input_str):
 
-
+    #set all requirements for the Twisty Timer backup format
     c_time = int(time.time() *1000)
     lines = base64.b64decode(input_str.encode()).decode().split('\n')
     if len(lines) != 6:
